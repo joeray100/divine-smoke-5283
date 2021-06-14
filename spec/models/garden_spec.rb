@@ -18,14 +18,25 @@ RSpec.describe Garden do
     @plant4 = Plant.create!(name: "Onions", description: "Prefers mild conditions", days_to_harvest: 50)
 
     @plot1.plants.push(@plant1, @plant2, @plant3, @plant1)
-    @plot2.plants.push(@plant4)
+    @plot2.plants.push(@plant1, @plant4, @plant2)
   end
 
   describe 'instance methods' do
     describe '#garden_plants' do
-      it "It returns plants that belong to this garden, is unique, and take less than 100 days to harvest." do
+      # it "It returns plants that belong to this garden, is unique, and take less than 100 days to harvest." do
+      #   expect(@garden1.garden_plants).to eq([@plant1, @plant2, @plant4])
+      #
+      #   # plant 3 is over 100 days_to_harvest
+      #   expect(@garden1.garden_plants).to_not eq([@plant1, @plant2, @plant3])
+      #   # plant 3 is over 100 days_to_harvest & plant 1 is in list twice
+      #   expect(@garden1.garden_plants).to_not eq([@plant1, @plant2, @plant3, @plant1, @plant4])
+      # end
+
+      it "It returns plants that belong to this garden, is unique, take less than 100 days to harvest, and is ordered number of plants that appear in any of that garden's plots from most to least." do
         expect(@garden1.garden_plants).to eq([@plant1, @plant2, @plant4])
 
+        # testing the extension order
+        expect(@garden1.garden_plants).to_not eq([@plant2, @plant1, @plant4])
         # plant 3 is over 100 days_to_harvest
         expect(@garden1.garden_plants).to_not eq([@plant1, @plant2, @plant3])
         # plant 3 is over 100 days_to_harvest & plant 1 is in list twice
@@ -33,10 +44,4 @@ RSpec.describe Garden do
       end
     end
   end
-
-  # describe 'class methods' do
-  #   describe '.' do
-  #   end
-  # end
-  #
 end

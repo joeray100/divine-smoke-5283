@@ -1,0 +1,7 @@
+<h3><%= @garden.name %>'s Plants: </h3>
+
+<% @garden_plants.each do |plant| %>
+  <section id="gardens-plant-<%= plant.id %>">
+    <li><%= plant.name %></li>
+  </section>
+<% end %>

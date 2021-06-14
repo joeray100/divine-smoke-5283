@@ -15,7 +15,7 @@ RSpec.describe Garden do
     @plant3 = Plant.create!(name: "Carrots", description: "Prefers dry soil.", days_to_harvest: 150)
 
     @plot2 = @garden1.plots.create!(number: 40, size: "Medium", direction: "South")
-    @plant4 = Plant.create!(name: "Watermelon", description: "Prefers rich soil and wet weather.", days_to_harvest: 50)
+    @plant4 = Plant.create!(name: "Onions", description: "Prefers mild conditions", days_to_harvest: 50)
 
     @plot1.plants.push(@plant1, @plant2, @plant3, @plant1)
     @plot2.plants.push(@plant4)

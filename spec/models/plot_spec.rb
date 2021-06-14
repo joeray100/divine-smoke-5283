@@ -6,18 +6,4 @@ RSpec.describe Plot do
     it { should have_many(:plot_plants) }
     it { should have_many(:plants).through(:plot_plants) }
   end
-
-  # before :each do
-  #
-  # end
-  #
-  # describe 'class methods' do
-  #   describe '.' do
-  #   end
-  # end
-  #
-  # describe 'instance methods' do
-  #   describe '#' do
-  #   end
-  # end
 end

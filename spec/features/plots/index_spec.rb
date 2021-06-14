@@ -48,4 +48,37 @@ RSpec.describe 'Plot index Page' do
       expect(page).to have_content(@plant4.name)
     end
   end
+
+  it "I see a link to remove that plant from that plot" do
+    expect(current_path).to eq(plots_path)
+
+    within "#plant-#{@plant1.id}" do
+      expect(page).to have_link('Delete Plant')
+    end
+
+    within "#plant-#{@plant2.id}" do
+      expect(page).to have_link('Delete Plant')
+    end
+
+    within "#plant-#{@plant3.id}" do
+      expect(page).to have_link('Delete Plant')
+    end
+
+    within "#plant-#{@plant4.id}" do
+      expect(page).to have_link('Delete Plant')
+    end
+  end
+
+  it "I can delete a plant from a plot" do
+    expect(current_path).to eq(plots_path)
+
+    within "#plant-#{@plant1.id}" do
+      expect(page).to have_content(@plant1.name)
+      click_link 'Delete Plant'
+    end
+
+    expect(current_path).to eq(plots_path)
+    expect(page).to_not have_content(@plant1.name)
+    expect(page).to_not have_link('Delete Plant', count: 4)
+  end
 end
